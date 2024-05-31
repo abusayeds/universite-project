@@ -6,6 +6,13 @@ const userNameSchema = z.object({
   middleName: z.string().optional(),
   lastName: z.string(),
 });
+// update userNameSchema 
+
+const updateUserNameSchema = z.object({
+    fristName: z.string().optional(),
+    middleName: z.string().optional(),
+    lastName: z.string().optional(),
+  });
 
 const studentGuardianSchema = z.object({
   fatherName: z.string(),
@@ -15,6 +22,15 @@ const studentGuardianSchema = z.object({
   motherOccupation: z.string(),
   motherContactNo: z.string(),
 });
+// UPdatestudentGuardianSchema
+const updateStudentGuardianSchema = z.object({
+    fatherName: z.string().optional(),
+    fatherOccupation: z.string().optional(),
+    fatherContactNo: z.string().optional(),
+    motherName: z.string().optional(),
+    motherOccupation: z.string().optional(),
+    motherContactNo: z.string().optional(),
+  });
 
 const studentLocalGuardianSchema = z.object({
   name: z.string(),
@@ -22,11 +38,17 @@ const studentLocalGuardianSchema = z.object({
   contactNo: z.string(),
   address: z.string(),
 });
+///UpdateStudentLocalGuardianSchema
+
+const updateStudentLocalGuardianSchema = z.object({
+    name: z.string().optional(),
+    occupation: z.string().optional(),
+    contactNo: z.string().optional(),
+    address: z.string().optional(),
+  });
 
 const createStudentValidationSchema = z.object({
     body :z.object({
-   
-
         id: z.string(),
         password: z.string().max(20),
         dateOfBirth: z.string().optional(),
@@ -41,16 +63,37 @@ const createStudentValidationSchema = z.object({
         guardian: studentGuardianSchema,
         localGuardian: studentLocalGuardianSchema,
         admissionSemester: z.string(),
+        academicDepartment: z.string(),
         profileImg: z.string().optional(),
-       
         isDeleted: z.boolean().default(false).optional(),
-
-
-      })
+   })
 })
-    
 
+// updateStudentValidationSchemA
+    
+const updateStudentValidationSchema = z.object({
+    body:z.object({
+        id: z.string().optional(),
+        password: z.string().max(20).optional(),
+        dateOfBirth: z.string().optional(),
+        name: updateUserNameSchema,
+        gender: z.enum(["male", "female", "other"]).optional(),
+        email: z.string().email().optional(),
+        contactNo: z.string().optional(),
+        emergencyContactNo: z.string().optional(),
+        bloodGroup: z.enum(["A+", "A-", "B+", "B-", "AB+", "AB-", "O+", "O-"]),
+        presentAddress: z.string().optional(),
+        permanentAddress: z.string().optional(),
+        guardian: updateStudentGuardianSchema,
+        localGuardian: updateStudentLocalGuardianSchema,
+        admissionSemester: z.string().optional(),
+        academicDepartment: z.string().optional(),
+        profileImg: z.string().optional(),
+        isDeleted: z.boolean().default(false).optional(),
+   })
+})
 
 export const studentValidation = {
     createStudentValidationSchema,
+    updateStudentValidationSchema
 };

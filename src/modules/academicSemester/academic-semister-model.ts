@@ -48,4 +48,4 @@ const academicSemestarSchema = new Schema<TAcademicSemester>(
     }
   })
 
-  export const academicSemestarModel = model<TAcademicSemester>('academicSemister', academicSemestarSchema)
+  export const academicSemestarModel = model<TAcademicSemester>('AcademicSemester', academicSemestarSchema)

@@ -3,10 +3,10 @@
 import httpStatus from "http-status";
 import sentResponse from "../../app/middlwares/ResponseHandel";
 import catchAsync from "../../app/utils/catchAsync-funtion";
-import { acadamicSemesterServise } from "../academicSemester/academic-semister-servise";
+import { AcademicFacultyServise } from "./academicFaculty-servise";
 
 const createAcadamicFaculty= catchAsync (async (req, res,) => {
-     const result = await acadamicSemesterServise.createAcadamicSemestaeServiseDB(req.body);
+     const result = await AcademicFacultyServise.createAcamdmicFacultyServiseDB(req.body);
      sentResponse(res, {
       statusCode: httpStatus.OK,
       success: true,
@@ -16,7 +16,7 @@ const createAcadamicFaculty= catchAsync (async (req, res,) => {
 });
 
 const getaAllAcadamicFaculty = catchAsync(async(req, res) => {
-    const result = await acadamicSemesterServise.getaAllAcademicSemestarDB()
+    const result = await AcademicFacultyServise.getAcamdmicFacultyServiseDB()
     sentResponse(res ,{
         statusCode: httpStatus.OK,
         success: true,
@@ -27,7 +27,9 @@ const getaAllAcadamicFaculty = catchAsync(async(req, res) => {
 
 const getSingleAcadamicFaculty = catchAsync (async (req, res) => {
     const {facultyId} = req.params
-    const result = await acadamicSemesterServise.getSingleAcademicSemester(facultyId)
+    
+    
+    const result = await AcademicFacultyServise.getSingleAcamdmicFacultyServiseDB(facultyId)
     sentResponse(res, {
         statusCode: httpStatus.OK,
         success: true,
@@ -38,7 +40,7 @@ const getSingleAcadamicFaculty = catchAsync (async (req, res) => {
 
 const UpdateAcademicFaculty = catchAsync(async(req, res) => {
     const {facultyId} = req.params
-    const result = await acadamicSemesterServise.UpdateAcadamicSemesterDB(facultyId, req.body)
+    const result = await AcademicFacultyServise.updateAcamdmicFacultyServiseDB(facultyId, req.body)
     sentResponse(res , {
         statusCode: httpStatus.OK,
         success: true,
@@ -48,7 +50,7 @@ const UpdateAcademicFaculty = catchAsync(async(req, res) => {
 })
 
 
-export const acadamicSemeterController = {
+export const acadamicFacultyController = {
   createAcadamicFaculty,
   getaAllAcadamicFaculty,
   getSingleAcadamicFaculty,
