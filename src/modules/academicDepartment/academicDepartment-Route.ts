@@ -6,21 +6,25 @@ import { acadamicDepartmentController } from "./academicDepartment-controller";
 const router = express.Router();
 router.post(
   "/create-acadamic-department",
-  requestValidation(AcademicDepartmentVaalidation.AcademicDepartmentValidationSchema),
+  requestValidation(
+    AcademicDepartmentVaalidation.AcademicDepartmentValidationSchema
+  ),
   acadamicDepartmentController.createAcadamicDepartment
 );
-router.get("/All-acadamic-department",
-    requestValidation(AcademicDepartmentVaalidation.AcademicDepartmentValidationSchema),
-    acadamicDepartmentController.getaAllAcadamicDepartment
-)
-router.get("/:departmentId",
-requestValidation(AcademicDepartmentVaalidation.AcademicDepartmentValidationSchema),
-acadamicDepartmentController.getSingleAcamdmicDepartment
-)
-router.patch("/:departmentId",
-requestValidation(AcademicDepartmentVaalidation.updateAcademicDepartmentValidationSchema),
-acadamicDepartmentController.UpdateAcademicDepartment
-)
-
+router.get(
+  "/All-acadamic-department",
+  acadamicDepartmentController.getaAllAcadamicDepartment
+);
+router.get(
+  "/:departmentId",
+  acadamicDepartmentController.getSingleAcamdmicDepartment
+);
+router.patch(
+  "/:departmentId",
+  requestValidation(
+    AcademicDepartmentVaalidation.updateAcademicDepartmentValidationSchema
+  ),
+  acadamicDepartmentController.UpdateAcademicDepartment
+);
 
 export const acadamicdepartmentRoute = router;

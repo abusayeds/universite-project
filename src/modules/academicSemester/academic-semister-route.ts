@@ -10,11 +10,9 @@ router.post(
   acadamicSemeterController.createAcadamicSemester
 );
 router.get("/All-acadamic-semester",
-    requestValidation(acadamicSemesterValidation.acadamicSemesterValidationSchema),
     acadamicSemeterController.getaAllAcamicSemestar
 )
 router.get("/:semesterId",
-    requestValidation(acadamicSemesterValidation.acadamicSemesterValidationSchema),
     acadamicSemeterController.getSingleAcademicSemestar
 )
 router.patch("/:semesterId",

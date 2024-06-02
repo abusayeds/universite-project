@@ -11,12 +11,10 @@ router.post(
 
 );
 router.get("/All-acadamic-faculty",
-    requestValidation(AcademicFacultyVaalidation.AcademicFacultyValidationSchema),
     acadamicFacultyController.getaAllAcadamicFaculty
 )
 router.get("/:facultyId",
 
-  requestValidation(AcademicFacultyVaalidation.AcademicFacultyValidationSchema),
     acadamicFacultyController.getSingleAcadamicFaculty
 )
 router.patch("/:facultyId",
