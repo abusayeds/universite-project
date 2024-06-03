@@ -49,8 +49,9 @@ const updateStudentLocalGuardianSchema = z.object({
 
 const createStudentValidationSchema = z.object({
     body :z.object({
-        id: z.string(),
         password: z.string().max(20),
+        student :z.object({
+        
         dateOfBirth: z.string().optional(),
         name: userNameSchema,
         gender: z.enum(["male", "female", "other"]),
@@ -66,6 +67,7 @@ const createStudentValidationSchema = z.object({
         academicDepartment: z.string(),
         profileImg: z.string().optional(),
         isDeleted: z.boolean().default(false).optional(),
+        })
    })
 })
 
@@ -73,8 +75,9 @@ const createStudentValidationSchema = z.object({
     
 const updateStudentValidationSchema = z.object({
     body:z.object({
-        id: z.string().optional(),
         password: z.string().max(20).optional(),
+        student : z.object({
+        id: z.string().optional(),
         dateOfBirth: z.string().optional(),
         name: updateUserNameSchema,
         gender: z.enum(["male", "female", "other"]).optional(),
@@ -90,6 +93,7 @@ const updateStudentValidationSchema = z.object({
         academicDepartment: z.string().optional(),
         profileImg: z.string().optional(),
         isDeleted: z.boolean().default(false).optional(),
+        })
    })
 })
 

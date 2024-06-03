@@ -7,7 +7,7 @@ import catchAsync from "../../app/utils/catchAsync-funtion";
 
 const createStudent: RequestHandler = catchAsync (async (req, res,) => {
      
-    const { password, student: studentData } = req.body;
+    const { password, student:studentData } = req.body;
     // const data = studentValidation.studentValidationSchema.parse(studentData)
     const result = await UserServise.createStudentDB(password,studentData);
     sentResponse(res, {

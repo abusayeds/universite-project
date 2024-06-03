@@ -5,8 +5,8 @@ import httpStatus from "http-status";
 import sentResponse from "../../app/middlwares/ResponseHandel";
 import catchAsync from "../../app/utils/catchAsync-funtion";
 
-const getAllStudents = catchAsync(async (req, res, ) => {
-  const result = await studentSerise.getAllStudentDB();
+const getAllStudents = catchAsync(async (req, res) => {
+  const result = await studentSerise.getAllStudentDB(req.query);
 
   sentResponse(res, {
     statusCode: httpStatus.OK,
@@ -16,8 +16,9 @@ const getAllStudents = catchAsync(async (req, res, ) => {
   });
 });
 
-const getSingleStudent = catchAsync(async (req, res, ) => {
+const getSingleStudent = catchAsync(async (req, res) => {
   const { studentID } = req.params;
+
   const result = await studentSerise.getSingleStudentDB(studentID);
   sentResponse(res, {
     statusCode: httpStatus.OK,
@@ -27,18 +28,18 @@ const getSingleStudent = catchAsync(async (req, res, ) => {
   });
 });
 
-const updateStudent = catchAsync(async (req, res, ) => {
-    const { studentID } = req.params;
-    const result = await studentSerise.updateStudentDB(studentID, req.body);
-    sentResponse(res, {
-      statusCode: httpStatus.OK,
-      success: true,
-      message: " update student data  succesfully",
-      data: result,
-    });
+const updateStudent = catchAsync(async (req, res) => {
+  const { studentID } = req.params;
+  const result = await studentSerise.updateStudentDB(studentID, req.body);
+  sentResponse(res, {
+    statusCode: httpStatus.OK,
+    success: true,
+    message: " update student data  succesfully",
+    data: result,
   });
+});
 
-const deleteStudent = catchAsync(async (req, res, ) => {
+const deleteStudent = catchAsync(async (req, res) => {
   const { studentID } = req.params;
   const result = await studentSerise.deleteStudentDB(studentID);
 
@@ -54,5 +55,5 @@ export const studentController = {
   getAllStudents,
   getSingleStudent,
   deleteStudent,
-  updateStudent
+  updateStudent,
 };
