@@ -7,7 +7,7 @@ import { AcademicFacultyServise } from "./academicFaculty-servise";
 
 const createAcadamicFaculty= catchAsync (async (req, res,) => {
      const result = await AcademicFacultyServise.createAcamdmicFacultyServiseDB(req.body);
-     sentResponse(res, {
+      sentResponse(res, {
       statusCode: httpStatus.OK,
       success: true,
       message: " creat acadamic semester succesfully ",
