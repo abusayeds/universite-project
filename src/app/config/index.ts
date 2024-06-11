@@ -7,6 +7,7 @@ export default {
   NODE_ENV : process.env.NODE_ENV ,
   port : process.env.PORT,
   databaseURL : process.env.DASATABE_URL,
-  bcrypt : process.env.bcrypt,
-  defoult_pasword:process.env.defoult_pasword
+  bcrypt_salt_rounds : process.env.bcrypt,
+  defoult_pasword:process.env.defoult_pasword,
+  jwt_access_secret:process.env.JWT_ACCESS_SECRET
 };

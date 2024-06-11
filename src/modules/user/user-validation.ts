@@ -1,4 +1,4 @@
-import { z } from "zod";
+import { string, z } from "zod";
 
 
 const userValidationSchema = z.object({
@@ -15,5 +15,5 @@ body: z.object({
 });
 
 export const userValidation = {
-    userValidationSchema
+    userValidationSchema,
 };

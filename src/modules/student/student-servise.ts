@@ -8,28 +8,30 @@ import { TStudent } from "./student-interface";
 import QueryBuilder from "../../app/builder/QueryBuilder";
 import { studentSearchableField } from "./student-constans";
 
-
 const getAllStudentDB = async (query: Record<string, unknown>) => {
-  const studentQuery = new QueryBuilder(Student.find()
-  .populate('admissionSemester')
-  .populate({
-    path: 'academicDepartment',
-    populate : {
-        path: 'academicFaculty'
-    }
-  })
-  , query)
-  .search(studentSearchableField)
-  .fillter()
-  .sort()
-  .pagenate()
-  .fields()
-  const result = await studentQuery.modelQuery
+  const studentQuery = new QueryBuilder(
+    Student.find()
+    .populate('user')
+      .populate("admissionSemester")
+      .populate({
+        path: "academicDepartment",
+        populate: {
+          path: "academicfaculty",
+        },
+      }),
+    query
+  )
+    .search(studentSearchableField)
+    .fillter()
+    .sort()
+    .pagenate()
+    .fields();
+  const result = await studentQuery.modelQuery;
   return result;
 };
 
 const getSingleStudentDB = async (id: string) => {
-  const result = await Student.findById( id )
+  const result = await Student.findById(id)
     .populate("admissionSemester")
     .populate({
       path: "academicDepartment",
@@ -64,7 +66,7 @@ const updateStudentDB = async (id: string, payload: Partial<TStudent>) => {
     }
   }
 
-  const result = await Student.findByIdAndUpdate(id , modifieldUpdateData, {
+  const result = await Student.findByIdAndUpdate(id, modifieldUpdateData, {
     new: true,
     runValidators: true,
   });
@@ -74,12 +76,12 @@ const deleteStudentDB = async (id: string) => {
   const session = await mongoose.startSession();
   try {
     session.startTransaction();
-    const deleteStudentDB = await Student.findByIdAndDelete( id , { session });
+    const deleteStudentDB = await Student.findByIdAndDelete(id, { session });
     if (!deleteStudentDB) {
       throw new AppError(httpStatus.BAD_REQUEST, "Failed to delete student");
     }
-    const userId = await deleteStudentDB.user
-    const deleteUserDB = await UserModel.findByIdAndDelete( userId , { session });
+    const userId = await deleteStudentDB.user;
+    const deleteUserDB = await UserModel.findByIdAndDelete(userId, { session });
     if (!deleteUserDB) {
       throw new AppError(httpStatus.BAD_REQUEST, "Failed to delete user");
     }
