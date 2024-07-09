@@ -13,7 +13,7 @@ app.use("/api/v1", router);
 
 app.get("/", (req: Request, res: Response) => {
     
-  res.send("this is get data ");
+  res.send("Get data this server");
 });
 app.use(globalErrorhendel);
 app.use(notFound);

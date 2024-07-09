@@ -54,11 +54,7 @@ const changePasswordDB = async (
   if (user.status === "blocked") {
     throw new AppError(httpStatus.NOT_FOUND, "This user is blocked !");
   }
-//   if (
-//    !(await UserModel?.isPasswordMatched(payload?.oldPassword, user.password))
-//   ) {
-//     throw new AppError(httpStatus.NOT_FOUND, "password do not metched !");
-//   }
+//   i
 
   const newHashedPassword = await bcrypt.hash(
     payload.newPassword,
